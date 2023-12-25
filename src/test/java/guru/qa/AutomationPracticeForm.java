@@ -72,6 +72,16 @@ public class AutomationPracticeForm {
 
         //Result
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
+        $(".table-responsive").shouldHave(text("TestName TestLastName"));
+        $(".table-responsive").shouldHave(text("Test@test.com"));
+        $(".table-responsive").shouldHave(text("Male"));
+        $(".table-responsive").shouldHave(text("1234567890"));
+        $(".table-responsive").shouldHave(text("16 February,2023"));
+        $(".table-responsive").shouldHave(text("Maths, Computer Science, Economics, Physics"));
+        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
+        $(".table-responsive").shouldHave(text("вторичка.jpeg"));
+        $(".table-responsive").shouldHave(text("TestAddress"));
+        $(".table-responsive").shouldHave(text("NCR Delhi"));
     }
 }
 
