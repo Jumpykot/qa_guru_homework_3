@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import java.io.File;
 
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byId;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -51,9 +50,9 @@ public class AutomationPracticeForm {
         $("#subjectsInput").setValue("Physics").pressEnter();
 
         //Hobbies
-        $(byId("hobbies-checkbox-1")).ancestor(".custom-checkbox").click();
-        $(byId("hobbies-checkbox-2")).ancestor(".custom-checkbox").click();
-        $(byId("hobbies-checkbox-3")).ancestor(".custom-checkbox").click();
+        $("#hobbies-checkbox-2").ancestor(".custom-checkbox").click();
+        $("#hobbies-checkbox-3").ancestor(".custom-checkbox").click();
+        $("#hobbies-checkbox-1").ancestor(".custom-checkbox").click();
 
         //Picture
         $("#uploadPicture").uploadFile(new File("/Users/user/Documents/Изображения/вторичка.jpeg"));
@@ -78,7 +77,13 @@ public class AutomationPracticeForm {
         $(".table-responsive").shouldHave(text("1234567890"));
         $(".table-responsive").shouldHave(text("16 February,2023"));
         $(".table-responsive").shouldHave(text("Maths, Computer Science, Economics, Physics"));
-        $(".table-responsive").shouldHave(text("Sports, Reading, Music"));
+
+        //Hobbies
+        $(".table-responsive").shouldHave(text("Sports"));
+        $(".table-responsive").shouldHave(text("Reading"));
+        $(".table-responsive").shouldHave(text("Music"));
+
+
         $(".table-responsive").shouldHave(text("вторичка.jpeg"));
         $(".table-responsive").shouldHave(text("TestAddress"));
         $(".table-responsive").shouldHave(text("NCR Delhi"));
