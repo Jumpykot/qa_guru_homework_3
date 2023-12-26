@@ -4,22 +4,20 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
-
 import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
+import static com.codeborne.selenide.Selectors.byText;
+import static com.codeborne.selenide.Selenide.*;
 
 public class AutomationPracticeForm {
 
     @BeforeAll
-    static void BeforeAll() {
+    static void beforeAll() {
 
         System.out.println("     Запуск конфигураций");
         Configuration.browserSize = "1920x1080";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        Configuration.holdBrowserOpen = true;
+        Configuration.holdBrowserOpen = true; //убрать в конце
         Configuration.timeout = 5000;
 
     }
@@ -29,10 +27,12 @@ public class AutomationPracticeForm {
 
         //simpleFields
         open("/automation-practice-form");
+        executeJavaScript("$('#fixedban').remove()");
+        executeJavaScript("$('footer').remove()");
         $("#firstName").setValue("TestName");
         $("#lastName").setValue("TestLastName");
         $("#userEmail").setValue("Test@test.com");
-        $("#gender-radio-1").parent().click();
+        $(byText("Male")).click();
         $("#userNumber").setValue("1234567890");
 
         //dateOfBirth
@@ -50,21 +50,21 @@ public class AutomationPracticeForm {
         $("#subjectsInput").setValue("Physics").pressEnter();
 
         //Hobbies
-        $("#hobbies-checkbox-2").ancestor(".custom-checkbox").click();
-        $("#hobbies-checkbox-3").ancestor(".custom-checkbox").click();
-        $("#hobbies-checkbox-1").ancestor(".custom-checkbox").click();
+        $(byText("Sports")).ancestor(".custom-checkbox").click();
+        $(byText("Reading")).ancestor(".custom-checkbox").click();
+        $(byText("Music")).ancestor(".custom-checkbox").click();
 
         //Picture
-        $("#uploadPicture").uploadFile(new File("/Users/user/Documents/Изображения/вторичка.jpeg"));
+        $("#uploadPicture").uploadFromClasspath("вторичка.jpeg");
 
         //Current Address
         $("#currentAddress").setValue("TestAddress");
 
         //State and city
         $("#state").click();
-        $("#react-select-3-option-0").click();
+        $(byText("NCR")).click();
         $("#city").click();
-        $("#react-select-4-option-0").click();
+        $(byText("Delhi")).click();
 
         //Submit
         $("#submit").click();
